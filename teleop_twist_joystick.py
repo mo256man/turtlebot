@@ -13,7 +13,6 @@ import sys, select, termios, tty
 
 ### 追加
 import pygame
-import sys
 
 class Joy():
     def __init__(self):
