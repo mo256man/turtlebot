@@ -102,7 +102,7 @@ class Joy():
         elif dic["joy_lx"] == -100 and dic["joy_rx"] == -100:
             key = "L"
         elif dic["joy_lx"] == 100 and dic["joy_rx"] == 100:
-            key = "j"
+            key = "J"
         elif dic["btn_lb"] == 1:
             key = "q"
         elif dic["btn_rb"] == 1:
@@ -264,6 +264,7 @@ def vels(speed, turn):
     return "currently:\tspeed %s\tturn %s " % (speed,turn)
 
 if __name__=="__main__":
+    joy = Joy()
     settings = termios.tcgetattr(sys.stdin)
 
     rospy.init_node('teleop_twist_keyboard')
