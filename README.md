@@ -1,3 +1,14 @@
+### Control your robot with a joystick in ROS
+https://ros-developer.com/2017/07/28/control-your-robot-with-a-joystick-in-ros/
+
+### ROSによるロボットカートの制御
+https://hajimerobot.co.jp/ros/robotcart/  
+joy_teleopがpyでなくcppなので私には難しい
+
+### Driving your TurtleBot 4
+https://turtlebot.github.io/turtlebot4-user-manual/tutorials/driving.html
+
+
 # teleop_twist_joystick.py
 ## 注意　仮想マシンで動かしてみたが駄目だった
 
