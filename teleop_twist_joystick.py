@@ -20,9 +20,19 @@ class Joy():
         初期設定
         """
         pygame.init()
-        self.joystick = pygame.joystick.Joystick(0)
-        self.joystick.init()
-        print(self.joystick.get_name())
+        try:
+            self.joystick = pygame.joystick.Joystick(0)
+        except:
+            self.has_stick = False
+            msg = "no joystick found"
+        else:
+            self.has_stick = True
+            msg = self.joystick.get_name()
+            self.joystick.init()
+        finally:
+            COLOR = "\033[31m\033[43m"
+            END = "\033[0m"
+            print(COLOR + msg + END)
 
     def map_axis(self, val):
         """
@@ -89,6 +99,7 @@ class Joy():
         return result
 
     def get_command(self):
+        print("get daze")
         dic = self.get_stick()
         if dic["joy_ly"] == 100 and dic["joy_ry"] == 100:
             key = "i"
@@ -108,11 +119,14 @@ class Joy():
             key = "z"
         else:
             key = ""
+        print(dic)
         return key
 
 ### 追加 ここまで
 
-msg = """
+msg = "CTRL-C to quit"
+
+"""
 Reading from the keyboard  and Publishing to Twist!
 ---------------------------
 Moving around:
@@ -283,7 +297,7 @@ if __name__=="__main__":
     z = 0
     th = 0
     status = 0
-
+    joykey = None
     try:
         pub_thread.wait_for_subscribers()
         pub_thread.update(x, y, z, th, speed, turn)
@@ -292,8 +306,13 @@ if __name__=="__main__":
         print(vels(speed,turn))
         while True:
             #### ジョイスティック入力をキー入力に変換する
+#            if True:
+            print(pygame.event.get())
             if pygame.event.get():              # イベントがある場合（起動直後を含む　ボタン押しっぱなしを含まない）
-                joykey = joy.get_command()
+                if joy.has_stick:
+                    joykey = joy.get_command()
+                else:
+                    joykey = None
             else:                               # イベントがない場合（ボタン押しっぱなしを含む）
                 pass                            # 何もしない　つまりコマンドは保持される
 
