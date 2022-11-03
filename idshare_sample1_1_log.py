@@ -256,9 +256,14 @@ def main():
     pub.publish(msg)
     wait(0.03)
     gDoesWorkTimer = True   # タイマー処理再開
+    strnow = datetime.datetime.now().strftime("%H:%M:%S.%f")
+    gLog += f"{strnow} : 待つぞ\n"
     wait(5)
-
-
+    strnow = datetime.datetime.now().strftime("%H:%M:%S.%f")
+    gLog += f"{strnow} : また動き始めるぞ\n"
+    """
+    ここまで
+    """
     strnow = datetime.datetime.now().strftime("%H:%M:%S.%f")
     gLog += f"{strnow} : 停止するまで減速\n"
     # 停止するまで減速させる
